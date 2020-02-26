@@ -5,6 +5,17 @@
 Managing state is often a source of heartache for many developers.
 In these next few challenges will help you improve your ability to manage your app's state.
 
+## Getting Started
+
+Using your command line, you will need to navigate to the this folder, install all dependencies, and start the app.
+
+```bash
+cd exercises/06-grocery-list/
+code . # if you would like to open this in a separate VSCode window
+yarn install
+yarn start
+```
+
 ## User Story
 
 As a user, I would like to have an app that allows me to record my food purchases. The app should allow me to add grocery items to a list, update grocery items, and remove items from the list.
