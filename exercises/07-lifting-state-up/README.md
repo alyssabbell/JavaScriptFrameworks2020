@@ -1,5 +1,7 @@
 # Lifting State Up Challenges
 
+In Visual Studio code, press `command+shift+v` (Mac) or `ctrl+shift+v` (Windows) to open a Markdown preview.
+
 ## Reason for the Challenges
 
 As a developer, you will encounter many situations where different React components will need to share the same state. One basic way to achieve this is create a hierarchy where you "lift state up". This means that you take two or more components' shared state and move it into a shared parent component. The parent will then act as a the source of truth, passing a read-only version of the state to its children.

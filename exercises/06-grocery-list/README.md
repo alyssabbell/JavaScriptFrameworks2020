@@ -1,5 +1,7 @@
 # Grocery List Challenge
 
+In Visual Studio code, press `command+shift+v` (Mac) or `ctrl+shift+v` (Windows) to open a Markdown preview.
+
 ## Reason for the Challenge
 
 Managing state is often a source of heartache for many developers.

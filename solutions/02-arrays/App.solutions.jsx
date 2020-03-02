@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       {images.map((image, index) => (
-        <img src={image} />
+        <img src={image} key={`image-${index}`} />
       ))}
     </div>
   );

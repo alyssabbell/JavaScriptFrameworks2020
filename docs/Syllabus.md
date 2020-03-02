@@ -72,7 +72,7 @@ Most of the class communication will take place on Slack. Please check it regula
 
 ### Grading
 
-In order to receive a certificate of completion, you must attend class and you must submit your work. However, we are willing to be flexible in special circumstances. Please contact the program director and your instructors _as soon as possible_ if you something serious is preventing you from particpating or submitting your work.
+In order to receive a certificate of completion, you must attend class and you must submit your work. However, we are willing to be flexible in special circumstances. Please contact the program director and your instructors _as soon as possible_ if something serious is preventing you from particpating or submitting your work.
 
 #### Participation
 
