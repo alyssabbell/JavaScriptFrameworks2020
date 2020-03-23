@@ -29,14 +29,16 @@ function App() {
    * Gets all characters when the component first renders,
    * and only when the component first renders.
    */
-  useEffect(async () => {
-    const response = await axios(
-      /**
-       * @see https://rickandmortyapi.com/documentation/#get-all-characters
-       */
-      "https://rickandmortyapi.com/api/character/"
-    );
-    setAllCharacters(response.data.results);
+  useEffect(() => {
+    (async () => {
+      const response = await axios(
+        /**
+         * @see https://rickandmortyapi.com/documentation/#get-all-characters
+         */
+        "https://rickandmortyapi.com/api/character/"
+      );
+      setAllCharacters(response.data.results);
+    })();
   }, []);
   /**
    * Does a request to look up more information on the character,

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import axios from "axios";
 
 function App() {
   const [dogImages, setDogImages] = useState([]);
@@ -12,15 +11,12 @@ function App() {
   const [amountOfImages, setAmountOfImages] = useState(1);
 
   useEffect(() => {
-    (async () => {
-      const response = await axios(
-        /**
-         * @see https://dog.ceo/dog-api/documentation/random#all
-         */
-        `https://dog.ceo/api/breeds/image/random/${amountOfImages}`
-      );
-      setDogImages(response.data.message);
-    })();
+    /**
+     * @see https://dog.ceo/dog-api/documentation/random#all
+     */
+    fetch(`https://dog.ceo/api/breeds/image/random/${amountOfImages}`)
+      .then(resp => resp.json())
+      .then(resp => setDogImages(resp.message));
   }, [amountOfImages]); // This means an AJAX request is made whenever amountOfImages changes
 
   return (
