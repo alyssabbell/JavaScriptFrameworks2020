@@ -6,7 +6,7 @@ import countries from "../../assets/countries";
 import states from "../../assets/states";
 
 /**
- * After the user submit the form, this displays what the user entered.
+ * After the user submits the form, this displays what the user entered.
  * @param {Object} props which should somehow include:
  * - setDisplayResults()
  * - first name
@@ -25,8 +25,28 @@ function AddressForm(props) {
    * - Use callback function(s) in props to update <App>'s state
    * - Add an event handler to handle form submission
    */
+  const userObj = {};
+
+  const handleInput = (e) => {
+    //console.log(e.target);
+    let objKey, objVal;
+    objKey = e.target.name;
+    objVal = e.target.value;
+
+    userObj[objKey] = objVal;
+    }
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.setUserInput(userObj);
+    //triggers results page to display
+    // need object of userInfo here in order to call setUserInput
+    props.setDisplayResults(true);
+  }
+
   return (
-    <form className="container mt-4">
+    <form className="container mt-4" onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="firstName" className="control-label">
           First Name
@@ -36,6 +56,8 @@ function AddressForm(props) {
           name="firstName"
           type="text"
           className="form-control"
+          value={props.userInput.firstName}
+          onChange={handleInput}
         />
       </div>
       <div className="form-group">
@@ -47,6 +69,8 @@ function AddressForm(props) {
           name="lastName"
           type="text"
           className="form-control"
+          value={props.userInput.lastName}
+          onChange={handleInput}
         />
       </div>
       <div className="form-group">
@@ -58,6 +82,8 @@ function AddressForm(props) {
           name="addressLine1"
           type="text"
           className="form-control"
+          value={props.userInput.addressLine1}
+          onChange={handleInput}
         />
         <p className="help-block text-muted">
           Street address, P.O. box, company name, c/o
@@ -68,13 +94,20 @@ function AddressForm(props) {
         <label htmlFor="city" className="control-label">
           City / Town
         </label>
-        <input id="city" name="city" type="text" className="form-control" />
+        <input 
+          id="city" 
+          name="city" 
+          type="text" 
+          className="form-control" 
+          value={props.userInput.city}
+          onChange={handleInput}
+          />
       </div>
       <div className="form-group">
         <label htmlFor="state" className="control-label">
           State / Province / Region
         </label>
-        <select id="state" name="state" className="form-control">
+        <select id="state" name="state" className="form-control" value={props.userInput.state} onChange={handleInput}>
           <option></option>
           {states.map((state, idx) => {
             return <option key={`state-${idx}`}>{state}</option>;
@@ -91,6 +124,8 @@ function AddressForm(props) {
           name="postalCode"
           type="text"
           className="form-control"
+          value={props.userInput.zip}
+          onChange={handleInput}
         />
       </div>
 
@@ -98,7 +133,7 @@ function AddressForm(props) {
         <label htmlFor="country" className="control-label">
           Country
         </label>
-        <select id="country" name="country" className="form-control">
+        <select id="country" name="country" className="form-control" value={props.userInput.country} onChange={handleInput}>
           <option></option>
           {countries.map((state, idx) => {
             return <option key={`state-${idx}`}>{state}</option>;

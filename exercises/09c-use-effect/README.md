@@ -28,7 +28,7 @@ As a user, I want to select a Rick and Morty from a list of characters so that I
 ![What should happen after a user selects a character](rick-morty2.png)
 
 ## Acceptance Criteria
-
+- A default image should be displayed when the page loads (** my note - probably the default dropdown value)
 - The application should make AJAX requests to the [Rick and Morty API](https://rickandmortyapi.com/).
 - The application should use the useEffect hook at least once.
 - Immediately after the component first renders, it should get a list of characters and display the character names as choices in a dropdown.

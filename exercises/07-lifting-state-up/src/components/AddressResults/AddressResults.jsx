@@ -12,10 +12,16 @@ import React from "react";
  * - country
  */
 function AddressResults(props) {
+
   return (
     <div className="card card-body bg-light mt-4 mb-4">
       Results:
-      <ul className="list-unstyled mb-0">{/* Add <li></li> tags here */}</ul>
+      <ul className="list-unstyled mb-0">{/* Add <li></li> tags here */
+      Object.values(props.userInput).map((input, index) => {
+        
+        return <li key={index}>{ input }</li>;
+      })
+      }</ul>
     </div>
   );
 }

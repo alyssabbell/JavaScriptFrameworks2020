@@ -9,11 +9,12 @@ function App() {
    * You will need to call on useState here for form fields
    * e.g. first name, last name, etc.
    */
-
+  const [userInput, setUserInput] = useState({});
   /**
    * You will need to pass props to <AddressResults /> and <AddressForm />
    */
-  return <>{displayResults ? <AddressResults /> : <AddressForm />}</>;
+  // renders component based on whether you want to display results
+  return <>{displayResults ? <AddressResults userInput={userInput}/> : <AddressForm setDisplayResults={setDisplayResults} userInput={userInput} setUserInput={setUserInput}/>}</>;
 }
 
 export default App;

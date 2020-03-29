@@ -2,29 +2,29 @@ import React, { useState, useContext, createContext } from "react";
 import "./App.css";
 import translations from "./assets/translations.json";
 
-/**
- * Declare createContext() here.
- */
+
+const LanguageContext = createContext();
+// It returns an object with 2 values:
+// { Provider, Consumer }
 
 function App() {
-  /**
-   * Set state here. (See useState in "CreateAccount" below.)
-   */
+  const [language, setLanguage] = useState("en");
 
-  /**
-   * You will need to return more than just <CreateAccount />.
-   */
-  return <CreateAccount />;
+  return (
+    <LanguageContext.Provider value={[language, setLanguage]}>
+      <>
+      <CreateAccount />
+      </>
+    </LanguageContext.Provider>
+  );
 }
 
 function CreateAccount() {
-  /**
-   * You will need to replace "useState" with something else.
-   */
-  const [language, setLanguage] = useState("en");
+
+  const [contextValue, setContextValue] = useContext(LanguageContext);
 
   /**
-   * @see src/assets/translations.json
+   * @see src/assets/trasnslations.json
    * @type {Object} this is an object of translations for a given language.
    * If "language" is "en", it will be English translations.
    * If "language" is "es", it will be Spanish translations.
@@ -38,7 +38,7 @@ function CreateAccount() {
    *    // ...
    * }
    */
-  const t = translations[language];
+  const t = translations[contextValue];
 
   /**
    * You will not need to change anything below this line.
@@ -54,7 +54,7 @@ function CreateAccount() {
           <button
             type="button"
             className="btn btn-link btn-sm"
-            onClick={() => setLanguage("en")}
+            onClick={() => setContextValue("en")}
           >
             English
           </button>
@@ -62,7 +62,7 @@ function CreateAccount() {
           <button
             type="button"
             className="btn btn-link btn-sm"
-            onClick={() => setLanguage("es")}
+            onClick={() => setContextValue("es")}
           >
             Español
           </button>

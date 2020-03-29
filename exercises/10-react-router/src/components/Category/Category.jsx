@@ -21,12 +21,14 @@ function Category(props) {
    * Category is hardcoded here.
    * This is the only part you will need to change in this file.
    */
-  const category = "office"; // change me
+  console.log(props);
+  const category = props.match.params.option; // change me
   /**
    * All the products in a category. To see how this works, take a look at
    * @see exercises/10-react-router/src/assets/inventory.js
    */
   const products = inventory[category];
+  //console.log(products);
 
   return (
     <div>
@@ -36,15 +38,15 @@ function Category(props) {
          * This loops through all the products for a the selected category
          * and displays them on the screen.
          */
-        products.map((product, index) => {
-          return (
-            <div className="col mb-4" key={`product-${index}`}>
-              <img src={product.image} alt="" className="mb-3" />
-              <div>{product.description}</div>
-              <strong>$ {product.price.toFixed(2)}</strong>
-            </div>
-          );
-        })}
+          products.map((product, index) => {
+            return (
+              <div className="col mb-4" key={`product-${index}`}>
+                <img src={product.image} alt="" className="mb-3" />
+                <div>{product.description}</div>
+                <strong>$ {product.price.toFixed(2)}</strong>
+              </div>
+            );
+          })}
       </div>
     </div>
   );
