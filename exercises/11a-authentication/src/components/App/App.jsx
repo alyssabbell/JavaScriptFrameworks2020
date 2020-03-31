@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import LoggedInContent from "../LoggedInContent/LoggedInContent";
 // You may need to import additional things here
+import axios from "axios";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   /**
@@ -17,16 +19,20 @@ function App() {
    * Be sure to set this when a user tries to login with invalid credentials.
    */
   const [errorMessage, setErrorMessage] = useState("");
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState();
+  // THIS IS VERY IMPORTANT ****
+  // the !!localStorage piece allows the user to say logged in even if refreshing
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(!!localStorage.getItem("token"));
   /**
    * You may need to add more things to state
    */
 
+  // * * * * * * * *  DON'T EVER STORE TOKEN IN STATE * * * * * * * * * 
   const login = token => {
     /**
      * Complete me
      */
-    localStorage.setItem("token");
+    console.log(token);
+    localStorage.setItem("token", token);
     setIsUserLoggedIn(true);
   };
 
@@ -42,13 +48,31 @@ function App() {
     /**
      * Complete me.
      */
+    e.preventDefault();
+    setIsLoading(true);
+
+    axios("http://localhost:7000/jwt/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      data: { username, password }
+    })
+      .then(resp => login(resp.data.token))
+      .then(setIsLoading(false))
+      // catch block is important - it handles any errors if the Ajax call fails
+      .catch(error => {
+        setErrorMessage("Invalid login credentials");
+        console.log(error);
+      })
+
   };
 
   /**
    * If the user is logged in, you should render the <LoggedInContent /> component instead.
    */
   if (isUserLoggedIn) {
-    return <LoggedInContent />;
+    return <LoggedInContent logout={logout} />
   }
   else
     return (
