@@ -18,12 +18,19 @@ After running the server on your machine, you will be greeted with a message You
 
 The API is a REST based API. You must use Axios or FETCH with stand-alone promises or async and await.
 
-| Route                            | METHOD |                                     cdResponse |
-| -------------------------------- | :----: | ---------------------------------------------: |
-| http://localhost:7000/jwt/login  |  POST  | Status 200 (Success) Status 401 (Unauthorized) |
-| http://localhost:7000/jwt/movies |  GET   |    Status 200 (Success) Status 403 (Forbidden) |
+| Route                               | METHOD | Response                                       |
+| ----------------------------------- | :----: | ---------------------------------------------- |
+| http://localhost:7000/jwt/login     |  POST  | Status 200 (Success) Status 401 (Unauthorized) |
+| http://localhost:7000/cookie/login  |  POST  | Status 200 (Success) Status 401 (Unauthorized) |
+| http://localhost:7000/jwt/movies    |  GET   | Status 200 (Success) Status 403 (Forbidden)    |
+| http://localhost:7000/cookie/movies |  GET   | Status 200 (Success) Status 403 (Forbidden)    |
 
-## Server JSON Response:
+For the login APIs, the following user account will work:
+
+Username: username
+Password: password
+
+### Server JSON Response:
 
 On Success: http://localhost:7000/jwt/movies
 
@@ -76,10 +83,10 @@ On Success: http://localhost:7000/jwt/movies
 }
 ```
 
-## Sample AJAX REQUEST FOR LOGIN
+### Sample AJAX REQUEST FOR LOGIN
 
 ```JAVASCRIPT
-axios("http://localhost:7000/jwt/login", {
+  axios("http://localhost:7000/jwt/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -90,9 +97,9 @@ axios("http://localhost:7000/jwt/login", {
 
 ```
 
-### SAMPLE REQUEST FOR GETTING MOVIES:
+### SAMPLE REQUEST FOR GETTING MOVIES (JWT TOKEN):
 
-`````JAVASCRIPT
+```JAVASCRIPT
   axios("http://localhost:7000/jwt/movies", {
       method: "GET",
       headers: {
@@ -102,5 +109,19 @@ axios("http://localhost:7000/jwt/login", {
       }
     })
       .then(resp => console.log(resp.data.data))
-      ````
-`````
+```
+
+### SAMPLE REQUEST FOR GETTING MOVIES (SESSION TOKEN):
+
+```JAVASCRIPT
+  axios("http://localhost:7000/cookie/movies", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      params: {
+        id: uuid // Passing to the token to the API here, where it is a parameter
+      }
+    })
+      .then(resp => console.log(resp.data.data))
+```

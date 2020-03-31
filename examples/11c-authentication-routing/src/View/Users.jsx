@@ -1,26 +1,21 @@
-import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie"; // Importing library to make cookie management easier
+import React, { useEffect, useState, useContext } from "react";
+import { CookieContext } from "../Context/SessionContext";
+import { destroySessionCookie } from "../utils/Cookies.util";
 import axios from "axios";
 
-/**
- * This content will only be displayed if the user is logged in.
- * @param {Object} props passing the logout function down as props from <LoginHandler />
- * @example {
- *    logout: () => { logout functionality }
- * }
- */
-function LoggedInContent({ logout }) {
+export const Users = ({ history }) => {
   const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  /**
+   * Getting the token (UUID) we stored in the Context API.
+   */
+  const [uuid] = useContext(CookieContext);
 
   useEffect(() => {
     /**
      * The API should not give you back any users unless you are logged in.
-     * To prove that you are logged in, you must pass the token in the API.
-     * Getting the token from a cookie.
-     * NOTE it isn't best practice to get the token like this in every React component. We will show you a better way with the Context API and protected routes.
+     * To prove that you are logged in, you must pass the token (UUID) in the API.
      */
-    const uuid = Cookies.get("token");
     axios
       .get("http://localhost:7000/cookie/users", {
         /**
@@ -37,13 +32,20 @@ function LoggedInContent({ logout }) {
         console.error(err);
         setErrorMessage("Oh no! An unexpected error occurred.");
       });
-  }, []);
+  }, [uuid]);
 
   return (
     <div className="container mt-2 mb-5">
       <div className="d-flex justify-content-between">
         <h1 className="h2">You are logged in!</h1>
-        <button type="button" className="btn btn-primary mb-2" onClick={logout}>
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            console.log({ history });
+            destroySessionCookie();
+            history.push("/");
+          }}
+        >
           Logout
         </button>
       </div>
@@ -68,6 +70,4 @@ function LoggedInContent({ logout }) {
       )}
     </div>
   );
-}
-
-export default LoggedInContent;
+};

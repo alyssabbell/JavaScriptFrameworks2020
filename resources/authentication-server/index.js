@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const path = require("path");
+const fs = require("fs");
 
 // You should never hardcode this in your repo in the real world
 const JWT_SECRET = "TODO";
@@ -120,33 +122,11 @@ app
   })
   .all(methodNotAllowedError);
 
-app.all("/", (req, res) => {
-  return res.send({
-    message:
-      "If you are tying to login, change the URL to one of the URLs below",
-    exampleAxiosSetups: [
-      {
-        method: "POST",
-        url: "http://localhost:7000/login",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        data: {
-          username: "username",
-          password: "password"
-        }
-      },
-      {
-        method: "GET",
-        url: "http://localhost:7000/users",
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0IiwiaWF0IjoxNTg0NjcxOTE5fQ.Pm6tefCnYR_xPkD90oEYYHWohnlcJAqiB7NT7QXhdxU"
-        }
-      }
-    ]
+app.all("*", (req, res) => {
+  const readMe = fs.readFileSync(path.join(__dirname, "/README.md"), {
+    encoding: "UTF-8"
   });
+  return res.set("Content-Type", "text/markdown; charset=UTF-8").send(readMe);
 });
 
 const server = app.listen(7000, () => {

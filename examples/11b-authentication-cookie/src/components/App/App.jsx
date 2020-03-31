@@ -27,7 +27,7 @@ function App() {
      * When the user refreshed the page or closes the tab, the logged in state is lost. They will have to login again.
      * To prevents this, I am storing the token in a cookie, which will still be there when the user refreshes or reopens the application.
      */
-    Cookies.set("token", token);
+    Cookies.set("token", token, { expires: 1 });
     /**
      * Setting in state so that I can force this component to rerender and show the logged in user content.
      */
