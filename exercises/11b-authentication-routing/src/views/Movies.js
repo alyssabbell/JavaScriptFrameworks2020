@@ -3,8 +3,8 @@ import { CookieContext } from "../contexts/SessionContext";
 import { removeSessionCookie } from "../utilities/Cookies.util";
 import axios from "axios";
 
-export const Movies = (props) => {
-    console.log("inside Movies props", props.history);
+export const Movies = ({ history }) => {
+    // console.log("inside Movies props", { history });
 
     const [movies, setMovies] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
@@ -33,9 +33,9 @@ export const Movies = (props) => {
                 {/* Make this button functional */}
                 <button className="btn btn-primary" onClick={() => {
 
-                    console.log("removed cookie");
+                    console.log({ history });
                     removeSessionCookie();
-                    props.history.push("/");
+                    history.push("/");
                 }}>Logout</button>
             </div>
             <p>

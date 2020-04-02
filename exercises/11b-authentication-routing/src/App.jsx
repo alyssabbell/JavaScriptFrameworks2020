@@ -4,8 +4,8 @@ import axios from "axios";
 import { CookieContext } from "./contexts/SessionContext.js";
 
 
-function App(props) {
-  console.log("App props", props);
+function App({ history }) {
+  //console.log("App props", props);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +27,8 @@ function App(props) {
     })
       .then(response => {
         setUUID(response.data.uuid);
-        props.history.push("/Cookie/Movies");
+        // console.log("App.js", { history });
+        history.push("/Cookie/Movies");
       })
       .catch(error => {
         setHasError(true);

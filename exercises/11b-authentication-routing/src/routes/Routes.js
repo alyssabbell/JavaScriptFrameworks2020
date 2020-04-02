@@ -6,6 +6,7 @@ import { CookieProvider } from "../contexts/SessionContext";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 
 export const Routes = () => {
+    console.log();
     return (
         <CookieProvider>
             <Switch>
