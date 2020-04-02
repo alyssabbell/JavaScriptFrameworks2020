@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import LoggedInContent from "../LoggedInContent/LoggedInContent";
 // You may need to import additional things here
 import axios from "axios";
-import { Switch, Route } from "react-router-dom";
 
 function App() {
   /**
