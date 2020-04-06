@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CookieContext } from "../Context/SessionContext";
-import { destroySessionCookie } from "../utils/Cookies.util";
 import axios from "axios";
 
 export const Users = ({ history }) => {
@@ -9,7 +8,7 @@ export const Users = ({ history }) => {
   /**
    * Getting the token (UUID) we stored in the Context API.
    */
-  const [uuid] = useContext(CookieContext);
+  const [uuid, setUUID] = useContext(CookieContext);
 
   useEffect(() => {
     /**
@@ -41,8 +40,7 @@ export const Users = ({ history }) => {
         <button
           className="btn btn-primary"
           onClick={() => {
-            console.log({ history });
-            destroySessionCookie();
+            setUUID();
             history.push("/");
           }}
         >
