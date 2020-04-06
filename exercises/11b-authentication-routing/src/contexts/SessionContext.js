@@ -4,6 +4,7 @@ import { setSessionCookie, getSessionCookie } from "../utilities/Cookies.util.js
 export const CookieContext = createContext();
 
 export const CookieProvider = ({ children }) => {
+    console.log("children in CookieProvider", { children });
     const [uuid, setUUID] = useState(getSessionCookie());
 
     const set = newUUID => {

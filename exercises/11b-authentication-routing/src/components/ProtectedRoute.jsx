@@ -7,7 +7,8 @@ inside the movies Component because that's what this file does -
 it renders the Movie Component * * * * * * * */
 
 export const ProtectedRoute = ({
-    component: Component, // Capitalizing because React requires components names to be capitalized
+    roberto: Batman, // Capitalizing because React requires components names to be capitalized
+    // component={Component}
     ...restOfPropsFromParent
 }) => {
     // export const ProtectedRoute = (props) => {
@@ -19,7 +20,7 @@ export const ProtectedRoute = ({
     // console.log(Component);
     // console.log(restOfProps);
 
-    // console.log(restOfPropsFromParent);
+    console.log(restOfPropsFromParent);
 
     const [uuid] = useContext(CookieContext);
 
@@ -32,7 +33,7 @@ export const ProtectedRoute = ({
             {...restOfPropsFromParent}
             render={propsFromRouter => {
                 return uuid ? (
-                    <Component {...restOfPropsFromParent} />
+                    <Batman {...restOfPropsFromParent} />
                 ) :
                     (
                         <Redirect

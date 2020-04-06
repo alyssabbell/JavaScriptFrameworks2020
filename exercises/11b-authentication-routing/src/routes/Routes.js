@@ -11,7 +11,7 @@ export const Routes = () => {
         <CookieProvider>
             <Switch>
                 <Route exact path="/" component={App} />
-                <ProtectedRoute exact path="/Cookie/Movies" component={Movies} />
+                <ProtectedRoute exact path="/Cookie/Movies" isUpperCaseTrue={true} roberto={Movies} />
             </Switch>
         </CookieProvider>
     );

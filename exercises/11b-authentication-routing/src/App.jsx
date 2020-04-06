@@ -5,7 +5,7 @@ import { CookieContext } from "./contexts/SessionContext.js";
 
 
 function App({ history }) {
-  //console.log("App props", props);
+  //console.log("App history", { history });
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);

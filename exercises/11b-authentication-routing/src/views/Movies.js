@@ -4,7 +4,8 @@ import { removeSessionCookie } from "../utilities/Cookies.util";
 import axios from "axios";
 
 export const Movies = ({ history }) => {
-    // console.log("inside Movies props", { history });
+
+
 
     const [movies, setMovies] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
@@ -26,14 +27,15 @@ export const Movies = ({ history }) => {
             .catch(error => setErrorMessage("There's an error loading movies.."))
     }, [uuid]);
 
+    console.log("inside Movies props", props);
+
     return (
         <div className="container mt-2 mb-5">
             <div className="d-flex justify-content-between">
                 <h1 className="h2">You are logged in!</h1>
                 {/* Make this button functional */}
                 <button className="btn btn-primary" onClick={() => {
-
-                    console.log({ history });
+                    //console.log({ history });
                     removeSessionCookie();
                     history.push("/");
                 }}>Logout</button>
